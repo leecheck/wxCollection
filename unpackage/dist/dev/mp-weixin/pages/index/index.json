@@ -2,6 +2,8 @@
   "navigationBarTitleText": "uni-ui基础项目",
   "usingComponents": {
     "uni-icons": "/components/uni-icons/uni-icons",
-    "uni-link": "/components/uni-link/uni-link"
+    "uni-swiper-dot": "/components/uni-swiper-dot/uni-swiper-dot",
+    "uni-card": "/components/uni-card/uni-card",
+    "uni-rate": "/components/uni-rate/uni-rate"
   }
 }

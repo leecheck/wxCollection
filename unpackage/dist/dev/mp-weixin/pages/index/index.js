@@ -103,8 +103,14 @@ var components = {
   uniIcons: function() {
     return Promise.all(/*! import() | components/uni-icons/uni-icons */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/uni-icons/uni-icons")]).then(__webpack_require__.bind(null, /*! @/components/uni-icons/uni-icons.vue */ 27))
   },
-  uniLink: function() {
-    return __webpack_require__.e(/*! import() | components/uni-link/uni-link */ "components/uni-link/uni-link").then(__webpack_require__.bind(null, /*! @/components/uni-link/uni-link.vue */ 35))
+  uniSwiperDot: function() {
+    return __webpack_require__.e(/*! import() | components/uni-swiper-dot/uni-swiper-dot */ "components/uni-swiper-dot/uni-swiper-dot").then(__webpack_require__.bind(null, /*! @/components/uni-swiper-dot/uni-swiper-dot.vue */ 35))
+  },
+  uniCard: function() {
+    return __webpack_require__.e(/*! import() | components/uni-card/uni-card */ "components/uni-card/uni-card").then(__webpack_require__.bind(null, /*! @/components/uni-card/uni-card.vue */ 42))
+  },
+  uniRate: function() {
+    return __webpack_require__.e(/*! import() | components/uni-rate/uni-rate */ "components/uni-rate/uni-rate").then(__webpack_require__.bind(null, /*! @/components/uni-rate/uni-rate.vue */ 49))
   }
 }
 var render = function() {
@@ -142,7 +148,48 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;} //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -163,26 +210,58 @@ var _default =
     return {
       href: 'https://uniapp.dcloud.io/component/README?id=uniui',
       iconClassList: [{
-        "name": "arrowdown",
+        "icon": "arrowdown",
+        "name": "扫一扫",
         "unicode": "e581" },
       {
-        "name": "arrowleft",
+        "icon": "arrowdown",
+        "name": "会员码",
         "unicode": "e582" },
       {
-        "name": "arrowright",
+        "icon": "arrowdown",
+        "name": "卡包",
         "unicode": "e583" },
       {
-        "name": "arrowup",
+        "icon": "arrowdown",
+        "name": "停车缴费",
         "unicode": "e580" },
       {
-        "name": "arrowthindown",
+        "icon": "arrowdown",
+        "name": "小票上传",
         "unicode": "e585" }],
 
       activeIndex: -1,
-      checked: false };
+      checked: false,
+      info: [{
+        colorClass: 'uni-bg-red',
+        url: 'https://img-cdn-qiniu.dcloud.net.cn/uniapp/images/shuijiao.jpg',
+        content: '内容 A' },
+
+      {
+        colorClass: 'uni-bg-green',
+        url: 'https://img-cdn-qiniu.dcloud.net.cn/uniapp/images/muwu.jpg',
+        content: '内容 B' },
+
+      {
+        colorClass: 'uni-bg-blue',
+        url: 'https://img-cdn-qiniu.dcloud.net.cn/uniapp/images/cbd.jpg',
+        content: '内容 C' }],
+
+
+      modeIndex: -1,
+      styleIndex: -1,
+      current: 0,
+      mode: 'default',
+      dotsStyles: {
+        backgroundColor: 'rgba(83, 200, 249,0.3)',
+        border: '1px rgba(83, 200, 249,0.3) solid',
+        color: '#fff',
+        selectedBackgroundColor: 'rgba(83, 200, 249,0.9)',
+        selectedBorder: '1px rgba(83, 200, 249,0.9) solid' } };
+
 
   },
-  methods: {
+  methods: _defineProperty({
     change: function change(e) {
       // e.detail.value在安卓手机上可能是String类型，后续修复后要修改
       this.checked = e.detail.value === 'false' || !e.detail.value ? false : true;
@@ -192,9 +271,23 @@ var _default =
     },
     navi: function navi() {
       uni.navigateTo({
-        url: '/pages/index/sub?param=' + encodeURIComponent(JSON.stringify({ name: "name" })) });
+        url: '/pages/index/sub?param=' + encodeURIComponent(JSON.stringify({
+          name: "name" })) });
 
-    } } };exports.default = _default;
+
+    },
+    clickCard: function clickCard() {
+      uni.showToast({
+        title: '点击卡片',
+        icon: 'none' });
+
+    },
+    changeSwipe: function changeSwipe(e) {
+      this.current = e.detail.current;
+    } }, "switchActive", function switchActive(
+  index) {
+    this.activeIndex = index;
+  }) };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),

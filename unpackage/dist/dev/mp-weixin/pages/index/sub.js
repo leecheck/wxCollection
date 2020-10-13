@@ -92,7 +92,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "recyclableRender", function() { return recyclableRender; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "components", function() { return components; });
-var components
+var components = {
+  uniSwiperDot: function() {
+    return __webpack_require__.e(/*! import() | components/uni-swiper-dot/uni-swiper-dot */ "components/uni-swiper-dot/uni-swiper-dot").then(__webpack_require__.bind(null, /*! @/components/uni-swiper-dot/uni-swiper-dot.vue */ 35))
+  }
+}
 var render = function() {
   var _vm = this
   var _h = _vm.$createElement
@@ -137,6 +141,15 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 var _default =
 {
   onLoad: function onLoad(option) {//option为object类型，会序列化上个页面传递的参数
@@ -144,31 +157,38 @@ var _default =
   },
   data: function data() {
     return {
-      href: 'https://uniapp.dcloud.io/component/README?id=uniui',
-      iconClassList: [{
-        "name": "arrowdown",
-        "unicode": "e581" },
-      {
-        "name": "arrowleft",
-        "unicode": "e582" },
-      {
-        "name": "arrowright",
-        "unicode": "e583" },
-      {
-        "name": "arrowup",
-        "unicode": "e580" },
-      {
-        "name": "arrowthindown",
-        "unicode": "e585" }],
+      info: [{
+        colorClass: 'uni-bg-red',
+        url: 'https://img-cdn-qiniu.dcloud.net.cn/uniapp/images/shuijiao.jpg',
+        content: '内容 A' },
 
-      activeIndex: -1,
-      checked: false };
+      {
+        colorClass: 'uni-bg-green',
+        url: 'https://img-cdn-qiniu.dcloud.net.cn/uniapp/images/muwu.jpg',
+        content: '内容 B' },
+
+      {
+        colorClass: 'uni-bg-blue',
+        url: 'https://img-cdn-qiniu.dcloud.net.cn/uniapp/images/cbd.jpg',
+        content: '内容 C' }],
+
+
+      modeIndex: -1,
+      styleIndex: -1,
+      current: 0,
+      mode: 'default',
+      dotsStyles: {
+        backgroundColor: 'rgba(83, 200, 249,0.3)',
+        border: '1px rgba(83, 200, 249,0.3) solid',
+        color: '#fff',
+        selectedBackgroundColor: 'rgba(83, 200, 249,0.9)',
+        selectedBorder: '1px rgba(83, 200, 249,0.9) solid' } };
+
 
   },
   methods: {
     change: function change(e) {
-      // e.detail.value在安卓手机上可能是String类型，后续修复后要修改
-      this.checked = e.detail.value === 'false' || !e.detail.value ? false : true;
+      this.current = e.detail.current;
     },
     switchActive: function switchActive(index) {
       this.activeIndex = index;

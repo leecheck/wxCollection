@@ -1,4 +1,6 @@
 {
   "navigationBarTitleText": "uni-ui基础项目-sub",
-  "usingComponents": {}
+  "usingComponents": {
+    "uni-swiper-dot": "/components/uni-swiper-dot/uni-swiper-dot"
+  }
 }

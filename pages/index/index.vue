@@ -2,14 +2,55 @@
 	<view class="container">
 		<view class="example-body">
 			<view v-for="(item,index) in iconClassList" :key="index" class="icon-item" @click="switchActive(index)">
-				<uni-icons :type="item.name" :color="activeIndex === index?'#007aff':'#8f8f94'" size="25" />
-				<text :style="{color:activeIndex === index?'#007aff':'#8f8f94'}" class="icon-item-text">{{ checked? item.unicode: item.name }}</text>
+				<uni-icons :type="item.icon" :color="activeIndex === index?'#007aff':'#8f8f94'" size="25" />
+				<text :style="{color:activeIndex === index?'#007aff':'#8f8f94'}" class="icon-item-text">{{ checked? item.icon: item.name }}</text>
 			</view>
 		</view>
-		<view @click="navi()" class="uni-link-item">点我跳转</view>
-		<view class="intro">本项目已包含uni ui组件，无需import和注册，可直接使用。在代码区键入字母u，即可通过代码助手列出所有可用组件。光标置于组件名称处按F1，即可查看组件文档。</view>
-		<text class="intro">详见：</text>
-		<uni-link :href="href" :text="href"></uni-link>
+		<uni-swiper-dot :info="info" :current="current" :mode="mode" :dots-styles="dotsStyles" field="content">
+			<swiper class="swiper-box" @change="changeSwipe">
+				<swiper-item v-for="(item, index) in info" :key="index">
+					<view :class="item.colorClass" class="swiper-item">
+						<image class="image" :src="item.url" mode="aspectFill" />
+					</view>
+				</swiper-item>
+			</swiper>
+		</uni-swiper-dot>
+		<view class="title-line">
+			<div>我的应用</div>
+			<div @click="navi()">添加常用应用点我跳转</div>
+		</view>
+		<view class="example-body">
+			<view v-for="(item,index) in iconClassList" :key="index" class="icon-item" @click="switchActive(index)">
+				<uni-icons :type="item.icon" :color="activeIndex === index?'#007aff':'#8f8f94'" size="25" />
+				<text :style="{color:activeIndex === index?'#007aff':'#8f8f94'}" class="icon-item-text">{{ checked? item.icon: item.name }}</text>
+			</view>
+		</view>
+		<view class="example-body">
+			<view v-for="(item,index) in iconClassList" :key="index" class="icon-item" @click="switchActive(index)">
+				<uni-icons :type="item.icon" :color="activeIndex === index?'#007aff':'#8f8f94'" size="25" />
+				<text :style="{color:activeIndex === index?'#007aff':'#8f8f94'}" class="icon-item-text">{{ checked? item.icon: item.name }}</text>
+			</view>
+		</view>
+		<view class="title-line">
+			<div>热门店铺</div>
+			<div @click="navi()">更多</div>
+		</view>
+		<view class="card-view" >
+			<view class="" style="width: 50%;">
+				<uni-card :is-shadow="true" title="标题文字" mode="style" thumbnail="https://img-cdn-qiniu.dcloud.net.cn/uniapp/images/shuijiao.jpg" @click="clickCard">
+					<text class="content-box-text">餐饮</text>
+					<text class="content-box-text">家有好面</text>
+					<uni-rate :size="18" :value="5" />
+				</uni-card>
+			</view>
+			<view class="" style="width: 50%;">
+				<uni-card :is-shadow="true" title="标题文字" mode="style" thumbnail="https://img-cdn-qiniu.dcloud.net.cn/uniapp/images/shuijiao.jpg" @click="clickCard">
+					<text class="content-box-text">餐饮</text>
+					<text class="content-box-text">家有好面</text>
+					<uni-rate :size="18" :value="5" />
+				</uni-card>
+			</view>
+		</view>
 	</view>
 </template>
 
@@ -19,23 +60,55 @@
 			return {
 				href: 'https://uniapp.dcloud.io/component/README?id=uniui',
 				iconClassList: [{
-					"name": "arrowdown",
+					"icon": "arrowdown",
+					"name": "扫一扫",
 					"unicode": "e581"
 				}, {
-					"name": "arrowleft",
+					"icon": "arrowdown",
+					"name": "会员码",
 					"unicode": "e582"
 				}, {
-					"name": "arrowright",
+					"icon": "arrowdown",
+					"name": "卡包",
 					"unicode": "e583"
 				}, {
-					"name": "arrowup",
+					"icon": "arrowdown",
+					"name": "停车缴费",
 					"unicode": "e580"
 				}, {
-					"name": "arrowthindown",
+					"icon": "arrowdown",
+					"name": "小票上传",
 					"unicode": "e585"
 				}],
 				activeIndex: -1,
-				checked: false
+				checked: false,
+				info: [{
+						colorClass: 'uni-bg-red',
+						url: 'https://img-cdn-qiniu.dcloud.net.cn/uniapp/images/shuijiao.jpg',
+						content: '内容 A'
+					},
+					{
+						colorClass: 'uni-bg-green',
+						url: 'https://img-cdn-qiniu.dcloud.net.cn/uniapp/images/muwu.jpg',
+						content: '内容 B'
+					},
+					{
+						colorClass: 'uni-bg-blue',
+						url: 'https://img-cdn-qiniu.dcloud.net.cn/uniapp/images/cbd.jpg',
+						content: '内容 C'
+					}
+				],
+				modeIndex: -1,
+				styleIndex: -1,
+				current: 0,
+				mode: 'default',
+				dotsStyles: {
+					backgroundColor: 'rgba(83, 200, 249,0.3)',
+					border: '1px rgba(83, 200, 249,0.3) solid',
+					color: '#fff',
+					selectedBackgroundColor: 'rgba(83, 200, 249,0.9)',
+					selectedBorder: '1px rgba(83, 200, 249,0.9) solid'
+				}
 			}
 		},
 		methods: {
@@ -48,8 +121,22 @@
 			},
 			navi() {
 				uni.navigateTo({
-					url: '/pages/index/sub?param=' + encodeURIComponent(JSON.stringify({name:"name"})),
+					url: '/pages/index/sub?param=' + encodeURIComponent(JSON.stringify({
+						name: "name"
+					})),
 				});
+			},
+			clickCard() {
+				uni.showToast({
+					title: '点击卡片',
+					icon: 'none'
+				})
+			},
+			changeSwipe(e) {
+				this.current = e.detail.current
+			},
+			switchActive(index) {
+				this.activeIndex = index
 			}
 		}
 	}
@@ -60,6 +147,10 @@
 		padding: 20px;
 		font-size: 14px;
 		line-height: 24px;
+	}
+	
+	.card-view{
+		display: flex;
 	}
 
 	@charset "UTF-8";
